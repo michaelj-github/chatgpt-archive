@@ -17,8 +17,8 @@
 -- ============================================================
 -- Drop existing tables (optional for development)
 -- ============================================================
--- DROP TABLE IF EXISTS messages;
--- DROP TABLE IF EXISTS chats;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS chats;
 
 
 -- ============================================================
@@ -95,9 +95,21 @@ CREATE TABLE IF NOT EXISTS messages (
 -- ============================================================
 
 -- Unique combination ensures idempotency
-ALTER TABLE messages
-    ADD CONSTRAINT IF NOT EXISTS uq_messages_chat_idx
-    UNIQUE (chat_id, message_index);
+-- ADD CONSTRAINT IF NOT EXISTS is not supported, so use a DO $$ block
+-- ALTER TABLE messages
+--     ADD CONSTRAINT IF NOT EXISTS uq_messages_chat_idx
+--     UNIQUE (chat_id, message_index);
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_constraint
+        WHERE conname = 'uq_messages_chat_idx'
+    ) THEN
+        ALTER TABLE messages
+        ADD CONSTRAINT uq_messages_chat_idx UNIQUE (chat_id, message_index);
+    END IF;
+END$$;
 
 -- Fast retrieval: "SELECT … WHERE chat_id=X ORDER BY message_index"
 CREATE INDEX IF NOT EXISTS idx_messages_chat_id_index
