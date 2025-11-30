@@ -1,0 +1,26 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment vars
+.env
+
+# Logs
+logs/
+*.log
+
+# Backups
+backups/
+
+# Static output
+static_site/
+
+# Database dump files
+*.sql
+*.dump
+*.dump.gz
+
+# ChatGPT export files
+exports/
+raw_exports/
