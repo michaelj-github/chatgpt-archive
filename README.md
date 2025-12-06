@@ -205,7 +205,7 @@ This project is safe to make public *only if you do not commit:*
 
 ### ❌ Static HTML output (`static_site/`)
 
-### ❌ Database dumps (`*.sql`, `*.dump`, `backups/`)
+### ❌ Database dumps (`*.dump`, `backups/`)
 
 ### ❌ Logs containing message text
 
@@ -221,7 +221,6 @@ exports/
 raw_exports/
 logs/
 *.json
-*.sql
 *.dump
 *.gz
 ```

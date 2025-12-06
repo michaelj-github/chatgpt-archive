@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>All Chats</h2>
+
+<ul class="chat-list">
+    {% for chat in chats %}
+    <li>
+        <a href="chat/{{ chat.chat_id }}.html">{{ chat.title }}</a>
+        {% if chat.create_time %}
+        <span class="date">{{ chat.create_time }}</span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

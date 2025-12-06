@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS chats (
 
     -- Basic metadata
     title           TEXT NOT NULL,
-    created_at      TIMESTAMPTZ,
-    updated_at      TIMESTAMPTZ,
+    create_time     TIMESTAMPTZ,                    -- ChatGPT chat creation timestamp
+    update_time     TIMESTAMPTZ,                    -- ChatGPT chat last updated timestamp
     ingested_at     TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 
     -- Optional metadata from export
@@ -51,7 +51,6 @@ CREATE TABLE IF NOT EXISTS chats (
     raw_json        JSONB NOT NULL
 );
 
-
 -- ============================================================
 -- Indexes for chats
 -- ============================================================
@@ -59,11 +58,11 @@ CREATE TABLE IF NOT EXISTS chats (
 CREATE INDEX IF NOT EXISTS idx_chats_chat_id
     ON chats (chat_id);
 
-CREATE INDEX IF NOT EXISTS idx_chats_created_at
-    ON chats (created_at);
+CREATE INDEX IF NOT EXISTS idx_chats_create_time
+    ON chats (create_time);
 
-CREATE INDEX IF NOT EXISTS idx_chats_updated_at
-    ON chats (updated_at);
+CREATE INDEX IF NOT EXISTS idx_chats_update_time
+    ON chats (update_time);
 
 CREATE INDEX IF NOT EXISTS idx_chats_ingested_at
     ON chats (ingested_at);

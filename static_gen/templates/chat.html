@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="metadata">
+    {% if chat.create_time %}Created: {{ chat.create_time }}<br>{% endif %}
+    {% if chat.update_time %}Updated: {{ chat.update_time }}<br>{% endif %}
+    {% if chat.model %}Model: {{ chat.model }}<br>{% endif %}
+</div>
+
+<div class="messages">
+    {% for msg in messages %}
+    <div class="message {{ msg.role }}-message">
+        <div class="role">{{ msg.role | capitalize }}</div>
+        <div class="content">{{ msg.content | safe }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+<p><a href="../index.html">← Back to index</a></p>
+
+{% endblock %}

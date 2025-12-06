@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ css_prefix }}assets/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>{{ title }}</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Chat Archive — Generated Offline</p>
+        </div>
+    </footer>
+</body>
+</html>
